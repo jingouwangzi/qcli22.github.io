@@ -3,12 +3,12 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
 	<style type="text/css">
-		body, html {width: 100%;height: 100%;margin:0;font-family:"Î¢ÈíÑÅºÚ";font-family:"Î¢ÈíÑÅºÚ";}
+		body, html {width: 100%;height: 100%;margin:0;font-family:"å¾®è½¯é›…é»‘";font-family:"å¾®è½¯é›…é»‘";}
 		#allmap{width:100%;height:500px;}
 		#info{margin-left:5px; font-size:14px;}
 	</style>
-	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=qQ2dN8eb76wol8eoCKByxiBKFdYOLSX7"></script>
-	<title>»ñÈ¡°Ù¶ÈµØÍ¼tile±àºÅ</title>
+	<script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=qQ2dN8eb76wol8eoCKByxiBKFdYOLSX7"></script>
+	<title>è·å–ç™¾åº¦åœ°å›¾tileç¼–å·</title>
 </head>
 <body>
 	<div id="allmap"></div>
@@ -16,7 +16,7 @@
 </body>
 </html>
 <script type="text/javascript">
-	// °Ù¶ÈµØÍ¼API¹¦ÄÜ
+	// ç™¾åº¦åœ°å›¾APIåŠŸèƒ½
 	var map = new BMap.Map("allmap");
 	map.centerAndZoom(new BMap.Point(120.289881, 31.531833), 15);
 	var projection =map.getMapType().getProjection();
@@ -31,21 +31,21 @@
       map.addOverlay(marker);
 			
 			var zoom = map.getZoom();
-			var zoomStr = "µ±Ç°Ëõ·Å¼¶±ğ£º"+ zoom;
+			var zoomStr = "å½“å‰ç¼©æ”¾çº§åˆ«ï¼š"+ zoom;
       
       var lngLat = e.point; 
-			var lngLatStr ="<br />¾­Î³¶È£º"+ lngLat.lng +", "+ lngLat.lat;
+			var lngLatStr ="<br />ç»çº¬åº¦ï¼š"+ lngLat.lng +", "+ lngLat.lat;
 			
 			var worldCoordinate = projection.lngLatToPoint(lngLat);
-			var worldCoordStr ="<br />Æ½Ãæ×ø±ê£º"+ worldCoordinate.x +", "+ worldCoordinate.y;
+			var worldCoordStr ="<br />å¹³é¢åæ ‡ï¼š"+ worldCoordinate.x +", "+ worldCoordinate.y;
 			
 			var pixelCoordinate =new BMap.Pixel(Math.floor(worldCoordinate.x * Math.pow(2, this.getZoom() -18)), 
 			Math.floor(worldCoordinate.y * Math.pow(2, this.getZoom() -18)));
-			var pixelCoordStr ="<br />ÏñËØ×ø±ê£º"+ pixelCoordinate.x +", "+ pixelCoordinate.y;
+			var pixelCoordStr ="<br />åƒç´ åæ ‡ï¼š"+ pixelCoordinate.x +", "+ pixelCoordinate.y;
 			
 			var tileCoordinate =new BMap.Pixel(Math.floor(pixelCoordinate.x /256),
 			Math.floor(pixelCoordinate.y /256));
-			var tileCoordStr ="<br />Í¼¿é×ø±ê£º"+ tileCoordinate.x +", "+ tileCoordinate.y;
+			var tileCoordStr ="<br />å›¾å—åæ ‡ï¼š"+ tileCoordinate.x +", "+ tileCoordinate.y;
 			
 			document.getElementById("info").innerHTML = zoomStr + lngLatStr + worldCoordStr + pixelCoordStr + tileCoordStr;
 	}
