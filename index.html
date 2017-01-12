@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-us">
 <head>
+<<<<<<< HEAD
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -39,6 +40,17 @@
 			#allmap{width:100%;height:500px;}
 			.container_map{width:100%;}
 		</style>
+=======
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	<style type="text/css">
+		body, html {width: 100%;height: 100%;margin:0;font-family:"微软雅黑";font-family:"微软雅黑";}
+		#allmap{width:100%;height:500px;}
+		#info{margin-left:5px; font-size:14px;}
+	</style>
+	<script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=qQ2dN8eb76wol8eoCKByxiBKFdYOLSX7"></script>
+	<title>获取百度地图tile编号</title>
+>>>>>>> origin/master
 </head>
 <body>
 
@@ -84,6 +96,7 @@
 			var zoomStr = "当前缩放级别："+ zoom;
       
       var lngLat = e.point; 
+<<<<<<< HEAD
 			var lngLatStr ="<br />百度经纬度："+ lngLat.lng +", "+ lngLat.lat;
 
 			var amap_lngLat = bd2gcj(lngLat.lat, lngLat.lng);
@@ -91,6 +104,9 @@
 			
 			var wgs_lngLat = bd2wgs(lngLat.lat, lngLat.lng);
 			var wgs_lngLatStr ="<br />wgs84经纬度："+ wgs_lngLat.lng +", "+ wgs_lngLat.lat;
+=======
+			var lngLatStr ="<br />经纬度："+ lngLat.lng +", "+ lngLat.lat;
+>>>>>>> origin/master
 			
 			var worldCoordinate = projection.lngLatToPoint(lngLat);
 			var worldCoordStr ="<br />平面坐标："+ worldCoordinate.x +", "+ worldCoordinate.y;
