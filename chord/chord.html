@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>chord</title>
+		<script src="../js/jquery.min.js"></script>		
+		<script src="js/echarts.js"></script>
+	</head>
+	<body>
+		<div id="main" style="height: 900px;border:1px solid #ccc;padding:10px;"></div>
+		<script>
+			var links_data = {};
+			require.config({
+		        paths: {
+		            echarts: './js'
+		        }
+		    });
+    
+		    require(
+		        [
+		            'echarts',
+		            'echarts/chart/chord'
+		        ],
+		        function (ec) {
+		            var myChart = ec.init(document.getElementById('main'));
+                    $.getJSON('./data/l12.json')
+                    .done(function(data) {
+                    	$(data.links).each(function(i,d){
+                    		var k = d.source +'-'+d.target;
+                    		links_data[k] = d.weight;
+                    	});
+                    	//console.log(links_data);
+					            myChart.setOption({
+										    title : {
+										        text: 'metro',
+										        x:'right',
+										        y:'bottom'
+										    },
+										    tooltip : {
+										        trigger: 'item',
+										        formatter: function (params) {
+										        	  //console.log(params);
+										            if (params.indicator2) {    // is edge
+										                var index = params.name;
+										                var r_index = params.indicator2 + '-'+ params.indicator;
+										                var message = index + ":" + links_data[index] + "<br/>" + r_index + ":" + links_data[r_index];
+										                return message;
+										            } else {    // is node
+										                return "进站:" + params.value
+										            }
+										        }
+										    },
+										    toolbox: {
+										        show : true,
+										        feature : {
+										            restore : {show: true},
+										            //magicType: {show: true, type: ['force', 'chord']},
+										            saveAsImage : {show: true}
+										        }
+										    },
+										    /*legend: {
+										        x: 'left',
+										        data:[]
+										    },*/
+										    series : [
+										        {
+										            type:'chord',
+										            sort : 'none',
+										            sortSub : 'descending',
+										            showScale : false,
+										            itemStyle : {
+										                normal : {
+										                    label : {
+										                        rotate : true
+										                    },
+										                    borderColor : '#808080',
+										                    borderWidth : 1
+										                }
+										            },
+										            // 使用 nodes links 表达和弦图
+										            nodes: data.nodes,
+										            links: data.links
+										        }
+										    ]
+						          });
+                    });
+            }
+		    );
+		</script>
+	</body>
+</html>
